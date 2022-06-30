@@ -79,7 +79,7 @@ public class TakenPiecesPanel extends JPanel {
         }
         for(final Piece takenPiece : blackTakenPieces) {
             try {
-                final BufferedImage image = ImageIO.read(new File("misc/plain"
+                final BufferedImage image = ImageIO.read(new File("misc/green_dot.png"
                         + takenPiece.getPieceAlliance().toString().substring(0, 1) + ""
                         + takenPiece.toString()));
                 final ImageIcon icon = new ImageIcon(image);
