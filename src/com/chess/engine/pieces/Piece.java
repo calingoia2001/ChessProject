@@ -126,7 +126,7 @@ public abstract class Piece {
                 return false;
             }
         };
-        private int pieceValue;
+        private final int pieceValue;
         private final String pieceName;
         PieceType(final int pieceValue, final String pieceName) {
             this.pieceValue = pieceValue;
