@@ -15,12 +15,31 @@ import static com.chess.engine.board.Move.*;
 
 public class King extends Piece {
     private static final int[] CANDIDATE_MOVE_COORDINATE = {-9, -8, -7, -1, 1, 7, 8, 9};
-
-    public King(final Alliance pieceAlliance,final int piecePosition) {
+    private final boolean kingSideCastleCapable;
+    private final boolean queenSideCastleCapable;
+    private final boolean isCastled;
+    public King(final Alliance pieceAlliance,final int piecePosition, final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceAlliance, true);
+        this.kingSideCastleCapable = kingSideCastleCapable;
+        this.queenSideCastleCapable = queenSideCastleCapable;
+        this.isCastled = false;
     }
-    public King(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove) {
+    public King(final Alliance pieceAlliance, final int piecePosition, final boolean isFirstMove, final boolean isCastled,
+                final boolean kingSideCastleCapable, final boolean queenSideCastleCapable) {
         super(PieceType.KING, piecePosition, pieceAlliance, isFirstMove);
+        this.isCastled = isCastled;
+        this.queenSideCastleCapable = queenSideCastleCapable;
+        this.kingSideCastleCapable = kingSideCastleCapable;
+    }
+
+    public boolean isCastled() {
+        return this.isCastled;
+    }
+    public boolean isKingSideCastleCapable() {
+        return this.kingSideCastleCapable;
+    }
+    public boolean isQueenSideCastleCapable() {
+        return this.queenSideCastleCapable;
     }
 
     @Override
@@ -50,7 +69,7 @@ public class King extends Piece {
 
     @Override
     public King movePiece(Move move) {
-        return new King(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate());
+        return new King(move.getMovedPiece().getPieceAlliance(), move.getDestinationCoordinate(), false, move.isCastlingMove(), false ,false);
     }
 
     @Override

@@ -67,7 +67,13 @@ public abstract class Player {
         }
         return false;
     }
+    public boolean isKingSideCastleCapable() {
+        return this.playerKing.isKingSideCastleCapable();
+    }
 
+    public boolean isQueenSideCastleCapable() {
+        return this.playerKing.isQueenSideCastleCapable();
+    }
     public boolean isInStaleMate() {
         return !this.isInCheck && !hasEscapeMoves();
     }
